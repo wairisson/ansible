@@ -1,0 +1,21 @@
+bgp 65510
+peer {{peer_add}} as-number {{peer_as}}
+peer {{peer_add}} description {{peer_desc}}-{{peer_circuit_id}}
+{% if peer_update_source is defined %}
+peer {{peer_add}} connect-interface {{peer_update_source}}
+peer {{peer_add}} ebgp-max-hop 5
+{% endif %}
+
+ipv4-family unicast
+peer {{peer_add}} enable
+peer {{peer_add}} public-as-only
+peer {{peer_add}} advertise-community
+peer {{peer_add}} advertise-ext-community
+peer {{peer_add}} route-filter {{peer_desc}}-AS{{peer_as}}-{{peer_circuit_id}}-V4-IN import
+peer {{peer_add}} route-filter {{peer_desc}}-AS{{peer_as}}-{{peer_circuit_id}}-V4-OUT export
+{% if peer_max_prefix is defined %}
+peer {{peer_add}} route-limit {{peer_max_prefix}}  alert-only 
+{% endif %}
+{% if peer_send_default is sameas true %}
+peer {{peer_add}} default-route-advertise
+{% endif %}

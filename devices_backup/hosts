@@ -1,0 +1,5 @@
+[Routers]
+asr1k ansible_network_os=ios  ansible_host=192.168.0.1
+asr9k ansible_network_os=iosxr  ansible_host=192.168.0.2
+ne40 ansible_network_os=ce ansible_host=192.168.0.3
+ne40 ansible_network_os=ce ansible_host=192.168.0.4 

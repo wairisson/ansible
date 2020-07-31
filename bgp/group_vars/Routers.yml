@@ -1,0 +1,12 @@
+# Change username to your user and password to your pass
+ansible_user: darth
+ansible_password: anakin@sky
+ansible_connection: network_cli
+peer_add: 192.168.1.1
+peer_add_v6: 2001:db8::1
+peer_desc: CUSTOMER-ACMECORP
+peer_as: 65500
+peer_circuit_id: IPT-001
+peer_update_source: lo100
+peer_max_prefix: 1000
+peer_send_default: true

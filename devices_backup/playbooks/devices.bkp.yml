@@ -1,9 +1,7 @@
 ---
-- name: Routers backup
+- name: Executa backup de config
   hosts: Routers
   gather_facts: false
-   
-
 
   tasks:
     - name: Coleta data e hora
@@ -11,19 +9,28 @@
       register: timestamp
 
 
-    - name: Executa backup IOS-XR
+    - name: IOS-XR routers backup
       iosxr_config:
         backup: yes
         backup_options:
           filename: "{{ inventory_hostname }}_{{ timestamp.stdout }}.txt"
-          dir_path: /var/lib/awx/projects/cgrt-projects/files/backups/
+          dir_path: /etc/ansible/
       when: ansible_network_os == "iosxr"
 
 
-    - name: Executa backup IOS
+    - name: IOS / IOS XE routers backup
       ios_config:
         backup: yes
         backup_options:
           filename: "{{ inventory_hostname }}_{{ timestamp.stdout }}.txt"
-          dir_path: /var/lib/awx/projects/cgrt-projects/files/backups/
+          dir_path: /etc/ansible/
       when: ansible_network_os == "ios"
+
+
+    - name: Huawei routers backup
+      ce_config:
+        backup: yes
+        backup_options:
+          filename: "{{ inventory_hostname }}_{{ timestamp.stdout }}.txt"
+          dir_path: /etc/ansible/
+      when: ansible_network_os == "ce"

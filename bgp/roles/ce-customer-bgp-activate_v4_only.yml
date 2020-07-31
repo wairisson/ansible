@@ -1,0 +1,9 @@
+---
+- name: Configuring BGP peer
+  hosts: Routers
+  gather_facts: no
+
+  
+  roles:
+     - ce-xpl-customer-route-filter-ipv4-add
+     - ce-bgp-ipv4-peer-add

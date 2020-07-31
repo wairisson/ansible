@@ -1,0 +1,4 @@
+# Change username to your user and password to your pass
+ansible_user: darth
+ansible_password: anakin@sky
+ansible_connection: network_cli

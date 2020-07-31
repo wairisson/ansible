@@ -1,0 +1,6 @@
+---
+- name: Criando xpl route-filter IPv6
+  ce_config:
+    src: config_template.j2
+    match: none
+  when: ansible_network_os == "ce"
